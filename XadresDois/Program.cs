@@ -1,16 +1,28 @@
 ﻿using System;
 using tabuleiro;
+using xadrez;
+
 namespace XadresDois
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Posicao p = new Posicao(4, 4);
-            Console.WriteLine("Linha :"+ p.Linha);
-            Console.WriteLine("Coluna :" + p.Coluna);
 
-            Tabuleiro tab = new Tabuleiro(9, 9);
+            try
+            {
+                Tabuleiro tab = new Tabuleiro(8, 8);
+                tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
+                tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
+                tab.ColocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
+                Tela.imprimeTabuleiro(tab);
+            }
+            catch (TabuleiroException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+            
         }
     }
 }
