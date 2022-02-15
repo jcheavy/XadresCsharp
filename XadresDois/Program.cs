@@ -11,11 +11,22 @@ namespace XadresDois
 
             try
             {
-                Tabuleiro tab = new Tabuleiro(8, 8);
-                tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(0, 0));
-                tab.ColocarPeca(new Torre(tab, Cor.Preta), new Posicao(1, 3));
-                tab.ColocarPeca(new Rei(tab, Cor.Preta), new Posicao(0, 2));
-                Tela.imprimeTabuleiro(tab);
+
+
+                PartidaDeXadrez partida = new PartidaDeXadrez();
+
+                while (!partida.terminada)
+                {
+                    Console.Clear();
+                    Tela.imprimeTabuleiro(partida.tab);
+                    Console.WriteLine();
+                    Console.Write("Digite a Posicão: ");
+                    Posicao origem = Tela.lerPosicaoXadres().toPosicao();
+                    Console.Write("Digite a Destino: ");
+                    Posicao destino = Tela.lerPosicaoXadres().toPosicao();
+                    partida.ExecutaMovimento(origem, destino);
+                }
+                              
             }
             catch (TabuleiroException e)
             {
